@@ -55,7 +55,7 @@
 }
 
 .services-card:hover {
-  transform: translateY(-4px);
+  transform: translateY(-8px) scale(1.03);
 }
 
 /* vertical divider between columns (desktop only) */
@@ -89,8 +89,12 @@
 }
 
 .services-card:hover .services-icon {
-  background: var(--fp-orange);
-  color: #101010;
+  background: #f5941f;
+  color: #111;
+
+  box-shadow:
+    0 0 20px rgba(245, 148, 31, 0.45),
+    0 0 45px rgba(245, 148, 31, 0.2);
 }
 
 .services-card-title {

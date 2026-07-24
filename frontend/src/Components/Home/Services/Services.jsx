@@ -12,37 +12,37 @@ const SERVICES = [
   {
     slug: "portrait",
     title: "Portrait Photography",
-    description: "Capturing your best moments.",
+    description: "Natural, expressive portraits that celebrate your personality.",
     icon: <Camera />,
   },
   {
     slug: "wedding",
     title: "Wedding Photography",
-    description: "Your big day, beautifully captured.",
+    description: "Every smile, tear and embrace preserved forever.",
     icon: <Gem />,
   },
   {
     slug: "landscape",
     title: "Landscape Photography",
-    description: "Nature, travel & scenic beauty.",
+    description: "Epic landscapes that showcase the beauty of every destination.",
     icon: <Mountain />,
   },
   {
     slug: "event",
     title: "Event Photography",
-    description: "Events, concerts & celebrations.",
+    description: "Capturing the atmosphere, excitement and unforgettable moments.",
     icon: <Video />,
   },
   {
     slug: "product",
     title: "Product Photography",
-    description: "Professional shots for your brand.",
+    description: "Clean, high-quality visuals that elevate your brand.",
     icon: <Package />,
   },
   {
     slug: "editing",
     title: "Photo Editing & Retouching",
-    description: "Perfecting every detail.",
+    description: "Professional retouching for flawless, magazine-quality results.",
     icon: <SlidersHorizontal />,
   },
 ];
