@@ -1,0 +1,340 @@
+/* ===== Design tokens (local to navbar; move to a shared variables.css later) ===== */
+.navbar {
+  --fp-bg: #0d0d0d;
+  --fp-orange: #f5941f;
+  --fp-orange-dim: rgba(245, 148, 31, 0.15);
+  --fp-white: #ffffff;
+  --fp-gray: #b7b7b7;
+  --fp-border: rgba(255, 255, 255, 0.1);
+}
+
+/* ===== Header shell ===== */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  background: var(--fp-bg);
+  border-bottom: 1px solid var(--fp-border);
+  font-family:
+    "Inter",
+    -apple-system,
+    BlinkMacSystemFont,
+    sans-serif;
+  transition:
+    background 0.35s ease,
+    border-color 0.35s ease,
+    box-shadow 0.35s ease;
+}
+
+/* Floats transparently over the hero image on the home page, before
+   the user scrolls. JS toggles this class on/off Navbar.jsx */
+.navbar-transparent {
+  background: transparent;
+  border-bottom-color: transparent;
+  box-shadow: none;
+}
+
+/* Since the navbar is now fixed (removed from normal document flow),
+   page content needs matching top padding wherever it should NOT sit
+   underneath it — e.g. add `padding-top: 84px` to the top of every
+   page except Home, where the Hero section is meant to sit behind it. */
+
+.navbar-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 18px 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+/* ===== Logo ===== */
+.navbar-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  flex-shrink: 0;
+}
+
+.navbar-logo-icon {
+  color: var(--fp-orange);
+  width: 26px;
+  height: 26px;
+  display: inline-flex;
+}
+
+.navbar-logo-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.navbar-logo-text {
+  font-size: 1.15rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--fp-white);
+  white-space: nowrap;
+}
+
+.navbar-logo-accent {
+  color: var(--fp-orange);
+}
+
+/* ===== Desktop nav links ===== */
+.navbar-links {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  flex: 1;
+  justify-content: center;
+}
+
+.navbar-link {
+  position: relative;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--fp-gray);
+  text-decoration: none;
+  padding: 6px 0;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  transition: color 0.2s ease;
+  white-space: nowrap;
+}
+
+.navbar-link:hover {
+  color: var(--fp-white);
+}
+
+.navbar-link-active {
+  color: var(--fp-white);
+}
+
+.navbar-link-active::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--fp-orange);
+  border-radius: 2px;
+}
+
+/* ===== Services dropdown (desktop) ===== */
+.navbar-dropdown {
+  position: relative;
+}
+
+.navbar-dropdown-trigger {
+  display: flex;
+  align-items: center;
+}
+
+.navbar-caret {
+  color: currentColor;
+  transition: transform 0.2s ease;
+}
+
+.navbar-caret-open {
+  transform: rotate(180deg);
+}
+
+.navbar-dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  min-width: 240px;
+  background: #161616;
+  border: 1px solid var(--fp-border);
+  border-radius: 10px;
+  padding: 8px;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+  animation: fp-dropdown-in 0.15s ease;
+}
+
+@keyframes fp-dropdown-in {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+.navbar-dropdown-item {
+  padding: 10px 14px;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  color: var(--fp-gray);
+  text-decoration: none;
+  transition:
+    background 0.15s ease,
+    color 0.15s ease;
+}
+
+.navbar-dropdown-item:hover {
+  background: var(--fp-orange-dim);
+  color: var(--fp-white);
+}
+
+/* ===== CTA button ===== */
+.navbar-cta {
+  flex-shrink: 0;
+  border: 1px solid var(--fp-orange);
+  color: var(--fp-orange);
+  background: transparent;
+  padding: 10px 22px;
+  border-radius: 999px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition:
+    background 0.2s ease,
+    color 0.2s ease;
+  white-space: nowrap;
+}
+
+.navbar-cta:hover {
+  background: var(--fp-orange);
+  color: #101010;
+}
+
+.navbar-cta-mobile {
+  display: none;
+}
+
+/* ===== Mobile burger ===== */
+.navbar-burger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 26px;
+  height: 20px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  flex-shrink: 0;
+}
+
+.navbar-burger span {
+  display: block;
+  height: 2px;
+  width: 100%;
+  background: var(--fp-white);
+  border-radius: 2px;
+  transition:
+    transform 0.25s ease,
+    opacity 0.25s ease;
+}
+
+.navbar-burger-open span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.navbar-burger-open span:nth-child(2) {
+  opacity: 0;
+}
+
+.navbar-burger-open span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* ===== Mobile menu panel ===== */
+.navbar-mobile {
+  display: none;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 960px) {
+  .navbar-links {
+    display: none;
+  }
+
+  .navbar-cta {
+    display: none;
+  }
+
+  .navbar-burger {
+    display: flex;
+  }
+
+  .navbar-mobile {
+    display: flex;
+    flex-direction: column;
+    max-height: 0;
+    overflow: hidden;
+    background: var(--fp-bg);
+    border-top: 1px solid transparent;
+    transition: max-height 0.3s ease;
+    padding: 0 32px;
+  }
+
+  .navbar-mobile-open {
+    max-height: 600px;
+    overflow-y: auto;
+    border-top-color: var(--fp-border);
+    padding: 16px 32px 24px;
+  }
+
+  .navbar-mobile-link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: none;
+    border: none;
+    font-family: inherit;
+    text-align: left;
+    width: 100%;
+    padding: 14px 0;
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--fp-gray);
+    text-decoration: none;
+    border-bottom: 1px solid var(--fp-border);
+    cursor: pointer;
+  }
+
+  .navbar-mobile-dropdown-trigger {
+    color: var(--fp-white);
+  }
+
+  .navbar-mobile-submenu {
+    display: flex;
+    flex-direction: column;
+    padding: 4px 0 8px 14px;
+  }
+
+  .navbar-mobile-sublink {
+    padding: 10px 0;
+    font-size: 0.9rem;
+    color: var(--fp-gray);
+    text-decoration: none;
+  }
+
+  .navbar-mobile-sublink:hover {
+    color: var(--fp-orange);
+  }
+
+  .navbar-cta-mobile {
+    display: block;
+    text-align: center;
+    margin-top: 18px;
+  }
+}

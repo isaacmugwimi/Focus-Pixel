@@ -1,0 +1,144 @@
+.services {
+  --fp-bg: #0d0d0d;
+  --fp-orange: #f5941f;
+  --fp-white: #ffffff;
+  --fp-gray: #9a9a9a;
+
+  background: var(--fp-bg);
+  padding: 80px 32px;
+  font-family:
+    "Inter",
+    -apple-system,
+    BlinkMacSystemFont,
+    sans-serif;
+}
+
+.services-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.services-eyebrow {
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--fp-orange);
+  margin: 0 0 12px;
+}
+
+.services-title {
+  font-size: clamp(1.8rem, 3vw, 2.4rem);
+  font-weight: 700;
+  color: var(--fp-white);
+  margin: 0 0 56px;
+}
+
+/* ===== Grid ===== */
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  column-gap: 0;
+  row-gap: 40px;
+}
+
+.services-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  padding: 0 20px;
+  text-decoration: none;
+  transition: transform 0.2s ease;
+}
+
+.services-card:hover {
+  transform: translateY(-4px);
+}
+
+/* vertical divider between columns (desktop only) */
+.services-card:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  top: 6px;
+  right: 0;
+  width: 1px;
+  height: 90px;
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.services-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  border: 1.5px solid var(--fp-orange);
+  color: var(--fp-orange);
+  transition:
+    background 0.2s ease,
+    color 0.2s ease;
+}
+
+.services-icon svg {
+  width: 28px;
+  height: 28px;
+}
+
+.services-card:hover .services-icon {
+  background: var(--fp-orange);
+  color: #101010;
+}
+
+.services-card-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--fp-white);
+  margin: 0;
+  line-height: 1.3;
+}
+
+.services-card-desc {
+  font-size: 0.85rem;
+  color: var(--fp-gray);
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 1080px) {
+  .services-grid {
+    grid-template-columns: repeat(3, 1fr);
+    row-gap: 48px;
+  }
+
+  /* only draw dividers between columns within the same row */
+  .services-card:nth-child(3n)::after {
+    display: none;
+  }
+}
+
+@media (max-width: 640px) {
+  .services {
+    padding: 60px 24px;
+  }
+
+  .services-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .services-card:nth-child(3n)::after {
+    display: block;
+  }
+
+  .services-card:nth-child(2n)::after {
+    display: none;
+  }
+
+  .services-card::after {
+    height: 70px;
+  }
+}
