@@ -62,12 +62,7 @@
   max-width: 1280px;
   margin: 0 auto;
   width: 100%;
-  /* animation: fp-content-fade 0.6s ease; */
-  /* animation: heroZoomIn 3s ease forwards; */
-  /* animation: heroBounce .9s ease; */
-  /* animation:heroSlideLeft .8s ease; */
   animation: heroRotate 3s ease;
-  /* animation: heroLuxury 1s cubic-bezier(0.17, 0.89, 0.32, 1.27); */
 }
 
 @keyframes fp-content-fade {
@@ -262,6 +257,7 @@
 .hero-stats {
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
   gap: 32px;
   max-width: 520px;
   padding-top: 32px;
@@ -382,10 +378,13 @@
 
 .hero-scroll-icon {
   display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.hero-scroll-dot {
+.scroll-chevron {
   animation: fp-scroll-bounce 1.8s ease-in-out infinite;
+  margin-top: -4px;
 }
 
 @keyframes fp-scroll-bounce {
@@ -394,7 +393,7 @@
     opacity: 1;
   }
   60% {
-    transform: translateY(10px);
+    transform: translateY(6px);
     opacity: 0.3;
   }
   100% {
@@ -409,20 +408,28 @@
   color: var(--fp-gray);
 }
 
-/* ===== Responsive ===== */
-@media (max-width: 768px) {
+/* ==========================================================
+   Responsive
+   Breakpoints: 1200 (small desktop/large laptop),
+   960 (tablet landscape), 768 (tablet portrait / mobile query
+   already present below, extended), 480 (small phones)
+   ========================================================== */
+
+/* ----- Small desktop / laptop ----- */
+@media (max-width: 1200px) {
   .hero {
-    min-height: 80vh;
-    padding: 100px 0 80px;
+    padding: 0 56px;
   }
 
-  .hero-overlay {
-    background: linear-gradient(
-      180deg,
-      rgba(10, 10, 10, 0.75) 0%,
-      rgba(10, 10, 10, 0.9) 60%,
-      rgba(10, 10, 10, 0.97) 100%
-    );
+  .hero-dots {
+    bottom: 84px;
+  }
+}
+
+/* ----- Tablet landscape ----- */
+@media (max-width: 960px) {
+  .hero {
+    padding: 0 36px;
   }
 
   .hero-title {
@@ -434,8 +441,61 @@
   }
 
   .hero-stats {
+    max-width: 100%;
+  }
+
+  .hero-arrow {
+    width: 40px;
+    height: 40px;
+  }
+}
+
+/* ----- Tablet portrait / mobile ----- */
+@media (max-width: 768px) {
+  .hero {
+    min-height: auto;
+    padding: 130px 24px 60px;
+  }
+
+  .hero-overlay {
+    background: linear-gradient(
+      180deg,
+      rgba(10, 10, 10, 0.75) 0%,
+      rgba(10, 10, 10, 0.9) 60%,
+      rgba(10, 10, 10, 0.97) 100%
+    );
+  }
+
+  .hero-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .hero-title {
+    max-width: 100%;
+  }
+
+  .hero-subtitle {
+    max-width: 100%;
+  }
+
+  .hero-actions {
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 32px;
+  }
+
+  .hero-stats {
+    justify-content: center;
     gap: 20px;
     max-width: 100%;
+    padding-top: 24px;
+  }
+
+  .hero-stat {
+    align-items: center;
   }
 
   .hero-stat-label {
@@ -456,10 +516,51 @@
   }
 
   .hero-dots {
-    bottom: 76px;
+    bottom: 24px;
   }
 
   .hero-scroll {
     display: none;
+  }
+}
+
+/* ----- Small phones ----- */
+@media (max-width: 480px) {
+  .hero {
+    padding: 120px 18px 50px;
+    min-height: auto;
+  }
+
+  .hero-eyebrow {
+    font-size: 0.7rem;
+    letter-spacing: 0.22em;
+  }
+
+  .hero-actions {
+    flex-direction: column;
+    align-items: center;
+    gap: 18px;
+  }
+
+  .hero-btn-primary {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .hero-stats {
+    gap: 14px;
+    row-gap: 18px;
+  }
+
+  .hero-stat-divider {
+    display: none;
+  }
+
+  .hero-arrow {
+    display: none;
+  }
+
+  .hero-dots {
+    bottom: 16px;
   }
 }
