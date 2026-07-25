@@ -1,7 +1,37 @@
 import { useEffect, useRef, useState, useCallback } from "react";
+import { motion } from "framer-motion";
 import { ArrowUpRight, ArrowRight } from "lucide-react";
 import "./Portfolio.css";
 import { PORTFOLIO } from "./PortfolioData";
+
+// ===== Animation variants =====
+
+const headerVariants = {
+  hidden: { opacity: 0, y: 24 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] },
+  },
+};
+
+// staggers its .portfolio-card children in as the track scrolls into view
+const trackVariants = {
+  hidden: {},
+  visible: {
+    transition: { staggerChildren: 0.09, delayChildren: 0.1 },
+  },
+};
+
+const cardVariants = {
+  hidden: { opacity: 0, y: 28, scale: 0.94 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: { duration: 0.55, ease: [0.22, 1, 0.36, 1] },
+  },
+};
 
 export default function Portfolio() {
   const trackRef = useRef(null);
@@ -47,44 +77,78 @@ export default function Portfolio() {
   return (
     <section className="portfolio">
       <div className="portfolio-inner">
-        <div className="portfolio-header">
+        <motion.div
+          className="portfolio-header"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.4 }}
+          variants={headerVariants}
+        >
           <div>
             <p className="portfolio-eyebrow">Featured Work</p>
             <h2 className="portfolio-title">Our Portfolio</h2>
           </div>
 
-          <a href="/gallery" className="portfolio-view-all">
+          <motion.a
+            href="/gallery"
+            className="portfolio-view-all"
+            whileHover="hover"
+          >
             View All
-            <ArrowRight size={16} aria-hidden="true" />
-          </a>
-        </div>
+            <motion.span
+              className="portfolio-view-all-icon"
+              variants={{ hover: { x: 4 } }}
+              transition={{ duration: 0.25, ease: "easeOut" }}
+            >
+              <ArrowRight size={16} aria-hidden="true" />
+            </motion.span>
+          </motion.a>
+        </motion.div>
 
-        <div className="portfolio-track" ref={trackRef} onScroll={handleScroll}>
+        <motion.div
+          className="portfolio-track"
+          ref={trackRef}
+          onScroll={handleScroll}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
+          variants={trackVariants}
+        >
           {PORTFOLIO.map((item) => (
-            <a
+            <motion.a
               key={item.id}
               href={`/gallery/${item.slug}`}
               className="portfolio-card"
+              variants={cardVariants}
+              whileHover={{ y: -8 }}
+              transition={{ type: "spring", stiffness: 300, damping: 22 }}
             >
-              <img
+              <motion.img
                 src={item.src}
                 alt={`${item.title} — ${item.category} photography`}
                 className="portfolio-card-img"
                 loading="lazy"
+                whileHover={{ scale: 1.08 }}
+                transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
               />
               <div className="portfolio-card-overlay" aria-hidden="true" />
 
-              <span className="portfolio-card-expand" aria-hidden="true">
+              <motion.span
+                className="portfolio-card-expand"
+                aria-hidden="true"
+                initial={{ opacity: 0, y: -6 }}
+                whileHover={{ opacity: 1, y: 0 }}
+              >
                 <ArrowUpRight size={18} />
-              </span>
+              </motion.span>
 
               <div className="portfolio-card-caption">
                 <span className="portfolio-card-category">{item.category}</span>
                 <span className="portfolio-card-title">{item.title}</span>
               </div>
-            </a>
+            </motion.a>
           ))}
-        </div>
+        </motion.div>
 
         <div
           className="portfolio-dots"
@@ -98,12 +162,17 @@ export default function Portfolio() {
               role="tab"
               aria-selected={i === activePage}
               aria-label={`Go to portfolio page ${i + 1}`}
-              className={
-                "portfolio-dot" +
-                (i === activePage ? " portfolio-dot-active" : "")
-              }
+              className="portfolio-dot"
               onClick={() => goToPage(i)}
-            />
+            >
+              {i === activePage && (
+                <motion.span
+                  layoutId="portfolio-dot-active"
+                  className="portfolio-dot-fill"
+                  transition={{ type: "spring", stiffness: 500, damping: 32 }}
+                />
+              )}
+            </button>
           ))}
         </div>
       </div>
