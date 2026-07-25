@@ -1,8 +1,8 @@
 import { Routes, Route, useLocation } from "react-router-dom";
 import Navbar from "./Components/Navbar/Navbar";
-// import Footer from "./components/Footer/Footer";
 import "./index.css";
 import Home from "./Components/Home/Home";
+import Footer from "./Components/Footer/Footer";
 
 // import Home from "./pages/Home/Home";
 // import About from "./pages/About/About";
@@ -38,7 +38,7 @@ function App() {
         </Routes>
       </main>
 
-      {/* <Footer /> */}
+      <Footer />
     </>
   );
 }
