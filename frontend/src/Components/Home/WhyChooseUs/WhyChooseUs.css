@@ -1,0 +1,148 @@
+.why-choose {
+  --fp-orange: #f5941f;
+  --fp-dark: #111111;
+  --fp-gray: #5c5c5c;
+  --fp-bg-light: #f2f2f2;
+
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(340px, 42%) 1fr;
+  align-items: stretch;
+  background: var(--fp-bg-light);
+  min-height: 620px;
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+  overflow: hidden;
+}
+
+/* ===== Left: text content ===== */
+.why-choose-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 90px 64px 90px 48px;
+  z-index: 2;
+}
+
+.why-choose-eyebrow {
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--fp-orange);
+  margin: 0 0 14px;
+}
+
+.why-choose-title {
+  font-size: clamp(1.9rem, 3vw, 2.5rem);
+  font-weight: 700;
+  color: var(--fp-dark);
+  margin: 0 0 18px;
+  line-height: 1.2;
+}
+
+.why-choose-desc {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--fp-gray);
+  max-width: 420px;
+  margin: 0 0 32px;
+}
+
+/* ===== Checklist ===== */
+.why-choose-list {
+  list-style: none;
+  margin: 0 0 40px;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.why-choose-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 0.98rem;
+  font-weight: 500;
+  color: var(--fp-dark);
+}
+
+.why-choose-check {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: rgba(245, 148, 31, 0.15);
+  color: var(--fp-orange);
+}
+
+/* ===== Signature ===== */
+.why-choose-signature {
+  font-family: "Brush Script MT", "Segoe Script", cursive;
+  font-size: 2rem;
+  color: var(--fp-dark);
+  margin: 0;
+}
+
+/* ===== Right: image ===== */
+.why-choose-media {
+  position: relative;
+  overflow: hidden;
+  min-height: 480px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* soft blend from the light content panel into the photo */
+.why-choose-fade {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    var(--fp-bg-light) 0%,
+    rgba(242, 242, 242, 0.6) 8%,
+    rgba(242, 242, 242, 0) 22%
+  );
+  pointer-events: none;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 960px) {
+  .why-choose {
+    grid-template-columns: 1fr;
+    min-height: 0;
+  }
+
+  .why-choose-content {
+    padding: 64px 24px 40px;
+    order: 1;
+  }
+
+  .why-choose-media {
+    order: 2;
+    min-height: 340px;
+  }
+
+  .why-choose-fade {
+    background: linear-gradient(
+      180deg,
+      var(--fp-bg-light) 0%,
+      rgba(242, 242, 242, 0.5) 6%,
+      rgba(242, 242, 242, 0) 18%
+    );
+  }
+}
+
+@media (max-width: 480px) {
+  .why-choose-content {
+    padding: 56px 20px 36px;
+  }
+
+  .why-choose-title {
+    font-size: 1.7rem;
+  }
+}
