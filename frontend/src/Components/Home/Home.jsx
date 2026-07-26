@@ -4,7 +4,6 @@ import Portfolio from "./Portfolio/Portfolio";
 import FadeInSection from "../Animations/FadeInSection";
 import WhyChooseUs from "./WhyChooseUs/WhyChooseUs";
 import Testimonial from "../Testimonials/Testimonial";
-// import ContactTeaser from "./ContactTeaser/ContactTeaser";
 import HowItWorks from "./HowItWorks/HowItWorks";
 import AboutTeaser from "./AboutTeaser/AboutTeaser";
 import ContactTeaser from "./ContactTeaser/ContactTeaser";
