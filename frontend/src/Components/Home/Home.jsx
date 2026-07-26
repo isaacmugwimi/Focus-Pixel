@@ -7,6 +7,7 @@ import BannerCTA from "./BannerCTA/BannerCTA";
 import Testimonial from "../Testimonials/Testimonial";
 import ContactTeaser from "./ContactTeaser/ContactTeaser";
 import HowItWorks from "./HowItWorks/HowItWorks";
+import AboutTeaser from "./AboutTeaser/AboutTeaser";
 
 const Home = () => {
   return (
@@ -33,7 +34,9 @@ const Home = () => {
         <Testimonial />
       </FadeInSection>
 
-      
+      <FadeInSection>
+        <AboutTeaser />
+      </FadeInSection>
 
       <FadeInSection>
         <ContactTeaser />
