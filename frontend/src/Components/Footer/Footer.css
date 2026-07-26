@@ -25,12 +25,12 @@
   transform: translateX(-50%);
   width: 800px;
   height: 420px;
-  /* background: radial-gradient(
+  background: radial-gradient(
     circle,
     rgba(245, 148, 31, 0.14) 0%,
     rgba(245, 148, 31, 0.05) 45%,
     transparent 75%
-  ); */
+  );
   filter: blur(60px);
   pointer-events: none;
   z-index: 0;
@@ -42,8 +42,8 @@
   position: absolute;
   inset: 0;
   background-image:
-    linear-gradient(rgba(255, 255, 255, 0.07) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.07) 1px, transparent 1px);
+    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
   background-size: 56px 56px;
   mask-image: radial-gradient(ellipse at top, black 0%, transparent 70%);
   pointer-events: none;
@@ -223,6 +223,32 @@
   margin: 0;
 }
 
+.footer-credit {
+  font-size: 0.8rem;
+  color: var(--fp-gray);
+  margin: 8px 0 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+}
+
+.footer-credit-heart {
+  color: var(--fp-orange);
+  fill: var(--fp-orange);
+}
+
+.footer-credit a {
+  color: var(--fp-gray);
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.footer-credit a:hover {
+  color: var(--fp-orange);
+}
+
 /* ===== Back to top ===== */
 .footer-to-top {
   position: fixed;
@@ -239,7 +265,7 @@
   background: var(--fp-orange);
   color: #101010;
   cursor: pointer;
-  box-shadow: 0 6px 18px rgba(245, 148, 31, 0.35);  
+  box-shadow: 0 6px 18px rgba(245, 148, 31, 0.35);
   transition:
     transform 0.2s ease,
     box-shadow 0.2s ease;
