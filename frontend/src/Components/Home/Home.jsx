@@ -13,6 +13,9 @@ const Home = () => {
     <>
       <Hero />
 
+
+{/* Hero */}
+
       <FadeInSection>
         <Services />
       </FadeInSection>
