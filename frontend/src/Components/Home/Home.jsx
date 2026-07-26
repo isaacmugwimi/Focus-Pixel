@@ -1,4 +1,3 @@
-import React from "react";
 import Hero from "./Hero/Hero";
 import Services from "./Services/Services";
 import Portfolio from "./Portfolio/Portfolio";
@@ -7,6 +6,7 @@ import WhyChooseUs from "./WhyChooseUs/WhyChooseUs";
 import BannerCTA from "./BannerCTA/BannerCTA";
 import Testimonial from "../Testimonials/Testimonial";
 import ContactTeaser from "./ContactTeaser/ContactTeaser";
+import HowItWorks from "./HowItWorks/HowItWorks";
 
 const Home = () => {
   return (
@@ -22,6 +22,10 @@ const Home = () => {
       </FadeInSection>
 
       <FadeInSection>
+        <HowItWorks />
+      </FadeInSection>
+
+      <FadeInSection>
         <WhyChooseUs />
       </FadeInSection>
 
@@ -29,9 +33,7 @@ const Home = () => {
         <Testimonial />
       </FadeInSection>
 
-      <FadeInSection>
-        <BannerCTA />
-      </FadeInSection>
+      
 
       <FadeInSection>
         <ContactTeaser />
