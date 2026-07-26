@@ -9,7 +9,7 @@ import {
   ChevronDown,
 } from "lucide-react";
 import { SLIDES } from "./HeroData";
-import VideoModal from "../VideoModal/VideoModal";
+import VideoModal from "./VideoModal/VideoModal";
 
 const AUTOPLAY_MS = 7000;
 
