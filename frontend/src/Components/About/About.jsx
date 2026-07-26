@@ -212,7 +212,7 @@ export default function About() {
               Meet The Founder
             </motion.p>
             <motion.h2 className="about-founder-name" variants={fadeUp}>
-              Isaac Mugwimi
+              Bruce Mwongesa
             </motion.h2>
             <motion.p className="about-founder-role" variants={fadeUp}>
               Founder & Lead Photographer
@@ -232,7 +232,7 @@ export default function About() {
             </motion.div>
 
             <motion.p className="about-founder-bio" variants={fadeUp}>
-              Isaac picked up his first camera over a decade ago and never put
+              Bruce picked up his first camera over a decade ago and never put
               it down. What began as a hobby shooting friends and family turned
               into Focus Pixel — a studio built on the belief that great
               photography is equal parts technical skill and genuine human
@@ -246,14 +246,14 @@ export default function About() {
                 href="https://instagram.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label="Isaac's Instagram"
+                aria-label="Bruce's Instagram"
                 className="about-founder-social-btn"
               >
                 <FaInstagram size={17} />
               </a>
               <a
                 href="mailto:hello@focuspixel.com"
-                aria-label="Email Isaac"
+                aria-label="Email Bruce"
                 className="about-founder-social-btn"
               >
                 <Mail size={17} />
