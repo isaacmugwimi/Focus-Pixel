@@ -5,11 +5,11 @@ import Home from "./Components/Home/Home";
 import Footer from "./Components/Footer/Footer";
 
 // import Home from "./pages/Home/Home";
-// import About from "./pages/About/About";
 // import Gallery from "./pages/Gallery/Gallery";
 // import Blog from "./pages/Blog/Blog";
 // import Testimonials from "./pages/Testimonials/Testimonials";
 import Contact from "./Components/Contact/Contact";
+import About from "./Components/About/About";
 // import ServiceDetail from "./pages/Services/ServiceDetail";
 // import NotFound from "./pages/NotFound/NotFound";
 
@@ -28,7 +28,7 @@ function App() {
       <main className={isHome ? "" : "page-offset"}>
         <Routes>
           <Route path="/" element={<Home />} />
-          {/* <Route path="/about" element={<About />} /> */}
+          <Route path="/about" element={<About />} />
           {/* <Route path="/services/:slug" element={<ServiceDetail />} /> */}
           {/* <Route path="/gallery" element={<Gallery />} /> */}
           {/* <Route path="/blog" element={<Blog />} /> */}

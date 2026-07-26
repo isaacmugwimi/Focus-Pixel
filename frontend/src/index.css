@@ -9,5 +9,5 @@
    Keep this in sync with the navbar's real height. */
 .page-offset {
   padding-top: 84px;
-  padding: 84px 50px 0 50px;
+  /* padding: 84px 50px 0 50px; */
 }
