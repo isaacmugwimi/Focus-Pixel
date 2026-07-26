@@ -6,6 +6,7 @@ import FadeInSection from "../Animations/FadeInSection";
 import WhyChooseUs from "./WhyChooseUs/WhyChooseUs";
 import BannerCTA from "./BannerCTA/BannerCTA";
 import Testimonial from "../Testimonials/Testimonial";
+import Contact from "../Contact/Contact";
 
 const Home = () => {
   return (
@@ -30,6 +31,10 @@ const Home = () => {
 
       <FadeInSection>
         <BannerCTA />
+      </FadeInSection>
+
+      <FadeInSection>
+        <Contact />
       </FadeInSection>
     </>
   );
