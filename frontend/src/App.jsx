@@ -9,7 +9,7 @@ import Footer from "./Components/Footer/Footer";
 // import Gallery from "./pages/Gallery/Gallery";
 // import Blog from "./pages/Blog/Blog";
 // import Testimonials from "./pages/Testimonials/Testimonials";
-// import Contact from "./pages/Contact/Contact";
+import Contact from "./Components/Contact/Contact";
 // import ServiceDetail from "./pages/Services/ServiceDetail";
 // import NotFound from "./pages/NotFound/NotFound";
 
@@ -28,13 +28,13 @@ function App() {
       <main className={isHome ? "" : "page-offset"}>
         <Routes>
           <Route path="/" element={<Home />} />
-          {/* <Route path="/about" element={<About />} />
-          <Route path="/services/:slug" element={<ServiceDetail />} />
-          <Route path="/gallery" element={<Gallery />} />
-          <Route path="/blog" element={<Blog />} />
-          <Route path="/testimonials" element={<Testimonials />} />
+          {/* <Route path="/about" element={<About />} /> */}
+          {/* <Route path="/services/:slug" element={<ServiceDetail />} /> */}
+          {/* <Route path="/gallery" element={<Gallery />} /> */}
+          {/* <Route path="/blog" element={<Blog />} /> */}
+          {/* <Route path="/testimonials" element={<Testimonials />} /> */}
           <Route path="/contact" element={<Contact />} />
-          <Route path="*" element={<NotFound />} /> */}
+          {/* <Route path="*" element={<NotFound />} /> */}
         </Routes>
       </main>
 
