@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import {
   Phone,
   Mail,
@@ -7,8 +7,40 @@ import {
   Clock,
   Send,
   CheckCircle2,
+  MessageCircle,
+  ChevronDown,
+  ShieldCheck,
+  Zap,
 } from "lucide-react";
+import { FaWhatsapp } from "react-icons/fa6";
 import "./Contact.css";
+
+const QUICK_CONTACT = [
+  {
+    icon: Phone,
+    label: "Call Us",
+    value: "+254 712 345 678",
+    href: "tel:+254712345678",
+  },
+  {
+    icon: FaWhatsapp,
+    label: "WhatsApp",
+    value: "Chat Instantly",
+    href: "https://wa.me/254712345678",
+  },
+  {
+    icon: Mail,
+    label: "Email",
+    value: "hello@focuspixel.com",
+    href: "mailto:hello@focuspixel.com",
+  },
+  {
+    icon: MapPin,
+    label: "Visit the Studio",
+    value: "Meru, Kenya",
+    href: "https://www.google.com/maps?q=Meru,Kenya",
+  },
+];
 
 const CONTACT_INFO = [
   {
@@ -47,6 +79,35 @@ const SERVICE_OPTIONS = [
   "Something else",
 ];
 
+const TRUST_STRIP = [
+  { icon: Zap, label: "Replies within 24 hours" },
+  { icon: ShieldCheck, label: "No spam, ever" },
+  { icon: MessageCircle, label: "Free initial consultation" },
+];
+
+const FAQS = [
+  {
+    question: "How far in advance should I book?",
+    answer:
+      "For weddings, we recommend booking 3–6 months ahead, especially during peak season (June–August, December). Portraits and product shoots can usually be scheduled within 1–2 weeks.",
+  },
+  {
+    question: "Do you travel outside Meru?",
+    answer:
+      "Yes — we shoot across Kenya and are available for destination work. Travel fees apply beyond a 50km radius of our studio, and we're happy to quote this upfront.",
+  },
+  {
+    question: "What's the turnaround time for edited photos?",
+    answer:
+      "Standard sessions are delivered within 5–7 business days. Full wedding galleries typically take 2–3 weeks given the volume of images we hand-edit.",
+  },
+  {
+    question: "Can I request a specific editing style?",
+    answer:
+      "Absolutely. Share reference images or describe the mood you're after during your consultation, and we'll tailor the retouching to match.",
+  },
+];
+
 const fadeUp = {
   hidden: { opacity: 0, y: 22 },
   visible: {
@@ -54,6 +115,11 @@ const fadeUp = {
     y: 0,
     transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] },
   },
+};
+
+const staggerContainer = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.1 } },
 };
 
 export default function Contact() {
@@ -66,6 +132,7 @@ export default function Contact() {
   });
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
+  const [openFaq, setOpenFaq] = useState(0);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -93,41 +160,68 @@ export default function Contact() {
 
   return (
     <div className="contact-page">
-      {/* ===== Header ===== */}
-      <section className="contact-header">
-        <motion.p
-          className="contact-eyebrow"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          variants={fadeUp}
+      {/* ===== Banner ===== */}
+      <section className="contact-banner">
+        <div className="contact-banner-overlay" aria-hidden="true" />
+
+        <motion.div
+          className="contact-banner-content"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
         >
-          Contact Us
-        </motion.p>
-        <motion.h1
-          className="contact-title"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          variants={fadeUp}
-          transition={{ delay: 0.05 }}
-        >
-          Let&apos;s Create Something Beautiful
-        </motion.h1>
-        <motion.p
-          className="contact-subtitle"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          variants={fadeUp}
-          transition={{ delay: 0.1 }}
-        >
-          Have a project in mind, a date to book, or just a question?
-          We&apos;d love to hear from you.
-        </motion.p>
+          <nav className="contact-breadcrumb" aria-label="Breadcrumb">
+            <a href="/">Home</a>
+            <span aria-hidden="true">/</span>
+            <span>Contact</span>
+          </nav>
+
+          <h1 className="contact-banner-title">
+            Let&apos;s Create Something Beautiful
+          </h1>
+          <p className="contact-banner-subtitle">
+            Have a project in mind, a date to book, or just a question?
+            We&apos;d love to hear from you.
+          </p>
+        </motion.div>
       </section>
 
-      {/* ===== Main content ===== */}
+      {/* ===== Quick contact cards ===== */}
+      <section className="contact-quick">
+        <motion.div
+          className="contact-quick-grid"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.3 }}
+          variants={staggerContainer}
+        >
+          {QUICK_CONTACT.map((item) => {
+            const Icon = item.icon;
+            return (
+              <motion.a
+                key={item.label}
+                href={item.href}
+                target={item.href.startsWith("http") ? "_blank" : undefined}
+                rel={
+                  item.href.startsWith("http")
+                    ? "noopener noreferrer"
+                    : undefined
+                }
+                className="contact-quick-card"
+                variants={fadeUp}
+              >
+                <span className="contact-quick-icon" aria-hidden="true">
+                  <Icon size={20} />
+                </span>
+                <span className="contact-quick-label">{item.label}</span>
+                <span className="contact-quick-value">{item.value}</span>
+              </motion.a>
+            );
+          })}
+        </motion.div>
+      </section>
+
+      {/* ===== Main content: info + form ===== */}
       <section className="contact-main">
         <div className="contact-grid">
           {/* Info column */}
@@ -163,8 +257,14 @@ export default function Contact() {
                     {item.href ? (
                       <a
                         href={item.href}
-                        target={item.href.startsWith("http") ? "_blank" : undefined}
-                        rel={item.href.startsWith("http") ? "noopener noreferrer" : undefined}
+                        target={
+                          item.href.startsWith("http") ? "_blank" : undefined
+                        }
+                        rel={
+                          item.href.startsWith("http")
+                            ? "noopener noreferrer"
+                            : undefined
+                        }
                         className="contact-info-item contact-info-item-link"
                       >
                         {content}
@@ -200,8 +300,8 @@ export default function Contact() {
                 <CheckCircle2 size={44} className="contact-success-icon" />
                 <h3>Message Sent!</h3>
                 <p>
-                  Thanks for reaching out — we&apos;ll get back to you within
-                  24 hours.
+                  Thanks for reaching out — we&apos;ll get back to you within 24
+                  hours.
                 </p>
                 <button
                   type="button"
@@ -295,6 +395,80 @@ export default function Contact() {
               </form>
             )}
           </motion.div>
+        </div>
+      </section>
+
+      {/* ===== Trust strip ===== */}
+      <section className="contact-trust">
+        <div className="contact-trust-inner">
+          {TRUST_STRIP.map((item) => {
+            const Icon = item.icon;
+            return (
+              <div className="contact-trust-item" key={item.label}>
+                <Icon size={18} aria-hidden="true" />
+                <span>{item.label}</span>
+              </div>
+            );
+          })}
+        </div>
+      </section>
+
+      {/* ===== FAQ ===== */}
+      <section className="contact-faq">
+        <div className="contact-faq-inner">
+          <motion.div
+            className="contact-faq-header"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.4 }}
+            variants={fadeUp}
+          >
+            <p className="contact-eyebrow">FAQ</p>
+            <h2 className="contact-faq-title">Common Questions</h2>
+          </motion.div>
+
+          <div className="contact-faq-list">
+            {FAQS.map((faq, index) => {
+              const isOpen = openFaq === index;
+              return (
+                <div
+                  key={faq.question}
+                  className={
+                    "contact-faq-item" +
+                    (isOpen ? " contact-faq-item-open" : "")
+                  }
+                >
+                  <button
+                    type="button"
+                    className="contact-faq-question"
+                    onClick={() => setOpenFaq(isOpen ? -1 : index)}
+                    aria-expanded={isOpen}
+                  >
+                    {faq.question}
+                    <ChevronDown
+                      size={18}
+                      className="contact-faq-chevron"
+                      aria-hidden="true"
+                    />
+                  </button>
+
+                  <AnimatePresence initial={false}>
+                    {isOpen && (
+                      <motion.div
+                        className="contact-faq-answer-wrap"
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: "auto", opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+                      >
+                        <p className="contact-faq-answer">{faq.answer}</p>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              );
+            })}
+          </div>
         </div>
       </section>
     </div>
