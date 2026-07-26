@@ -1,0 +1,249 @@
+.testimonials {
+  --fp-bg: #0d0d0d;
+  --fp-orange: #f5941f;
+  --fp-white: #ffffff;
+  --fp-gray: #a3a3a3;
+  --fp-card: #17130d;
+
+  position: relative;
+  overflow: hidden;
+  background: var(--fp-bg);
+  padding: 100px 24px;
+  font-family:
+    "Inter",
+    -apple-system,
+    BlinkMacSystemFont,
+    sans-serif;
+}
+
+.testimonials-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+/* ===== Header ===== */
+.testimonials-header {
+  max-width: 560px;
+  margin: 0 auto 64px;
+  text-align: center;
+}
+
+.testimonials-eyebrow {
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--fp-orange);
+  margin: 0 0 14px;
+}
+
+.testimonials-title {
+  font-size: clamp(1.8rem, 3vw, 2.4rem);
+  font-weight: 700;
+  color: var(--fp-white);
+  margin: 0 0 14px;
+}
+
+.testimonials-subtitle {
+  font-size: 0.98rem;
+  line-height: 1.7;
+  color: var(--fp-gray);
+  margin: 0;
+}
+
+/* ===== Stage ===== */
+.testimonials-stage {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 380px;
+  perspective: 1400px;
+}
+
+.testimonials-track {
+  position: relative;
+  width: 320px;
+  height: 100%;
+  transform-style: preserve-3d;
+}
+
+/* ===== Card ===== */
+.testimonials-card {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 40px 30px;
+  border-radius: 18px;
+  background: linear-gradient(160deg, var(--fp-card) 0%, #100d09 100%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+}
+
+.testimonials-card-active {
+  cursor: default;
+  border-color: rgba(245, 148, 31, 0.35);
+  box-shadow:
+    0 25px 60px rgba(0, 0, 0, 0.55),
+    0 0 40px rgba(245, 148, 31, 0.12);
+}
+
+.testimonials-quote {
+  font-size: 1.02rem;
+  font-style: italic;
+  line-height: 1.6;
+  color: var(--fp-white);
+  margin: 0 0 auto;
+  padding-top: 6px;
+}
+
+.testimonials-avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  border: 1.5px solid var(--fp-orange);
+  color: var(--fp-orange);
+  margin: 22px 0 14px;
+  flex-shrink: 0;
+}
+
+.testimonials-name {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--fp-white);
+  margin: 0 0 3px;
+}
+
+.testimonials-role {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--fp-orange);
+  margin: 0 0 12px;
+}
+
+.testimonials-stars {
+  display: flex;
+  gap: 3px;
+}
+
+.testimonials-star-filled {
+  color: var(--fp-orange);
+}
+
+.testimonials-star-empty {
+  color: rgba(255, 255, 255, 0.25);
+}
+
+/* ===== Arrows ===== */
+.testimonials-arrow {
+  position: relative;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(255, 255, 255, 0.18);
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--fp-white);
+  cursor: pointer;
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.testimonials-arrow:hover {
+  background: var(--fp-orange);
+  border-color: var(--fp-orange);
+  color: #101010;
+  transform: scale(1.06);
+}
+
+.testimonials-arrow-prev {
+  margin-right: 12px;
+}
+
+.testimonials-arrow-next {
+  margin-left: 12px;
+}
+
+/* ===== Dots ===== */
+.testimonials-dots {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 40px;
+}
+
+.testimonials-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  border: none;
+  padding: 0;
+  background: rgba(255, 255, 255, 0.2);
+  cursor: pointer;
+  transition:
+    background 0.25s ease,
+    transform 0.25s ease;
+}
+
+.testimonials-dot:hover {
+  background: rgba(255, 255, 255, 0.4);
+}
+
+.testimonials-dot-active {
+  background: var(--fp-orange);
+  transform: scale(1.3);
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 900px) {
+  .testimonials-stage {
+    height: 340px;
+  }
+
+  .testimonials-track {
+    width: 260px;
+  }
+
+  .testimonials-card {
+    padding: 32px 22px;
+  }
+}
+
+@media (max-width: 640px) {
+  .testimonials {
+    padding: 72px 16px;
+  }
+
+  .testimonials-stage {
+    height: 320px;
+  }
+
+  .testimonials-track {
+    width: 220px;
+  }
+
+  .testimonials-arrow {
+    width: 38px;
+    height: 38px;
+  }
+
+  .testimonials-quote {
+    font-size: 0.92rem;
+  }
+}
