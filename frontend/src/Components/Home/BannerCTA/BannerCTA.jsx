@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Camera, Aperture, ArrowRight } from "lucide-react";
-import "./CTABanner.css";
+import "./BannerCTA.css";
 
 export default function CTABanner() {
   return (

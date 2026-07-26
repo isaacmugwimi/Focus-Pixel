@@ -4,7 +4,7 @@ import Services from "./Services/Services";
 import Portfolio from "./Portfolio/Portfolio";
 import FadeInSection from "../Animations/FadeInSection";
 import WhyChooseUs from "./WhyChooseUs/WhyChooseUs";
-import CTABanner from "./CTABanner/CTABanner";
+import BannerCTA from "./BannerCTA/BannerCTA";
 
 const Home = () => {
   return (
@@ -22,8 +22,9 @@ const Home = () => {
       <FadeInSection>
         <WhyChooseUs />
       </FadeInSection>
+
       <FadeInSection>
-        <CTABanner />
+        <BannerCTA />
       </FadeInSection>
     </>
   );
