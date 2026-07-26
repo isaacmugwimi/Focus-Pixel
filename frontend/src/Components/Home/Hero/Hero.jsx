@@ -9,6 +9,7 @@ import {
   ChevronDown,
 } from "lucide-react";
 import { SLIDES } from "./HeroData";
+import VideoModal from "../VideoModal/VideoModal";
 
 const AUTOPLAY_MS = 7000;
 
@@ -21,6 +22,7 @@ const STATS = [
 export default function Hero() {
   const [activeIndex, setActiveIndex] = useState(0);
   const [paused, setPaused] = useState(false);
+  const [showreelOpen, setShowreelOpen] = useState(false);
   const timerRef = useRef(null);
 
   const goTo = useCallback((index) => {
@@ -79,7 +81,11 @@ export default function Hero() {
             <ArrowRight size={18} strokeWidth={2} />
           </a>
 
-          <button type="button" className="hero-btn-secondary">
+          <button
+            type="button"
+            className="hero-btn-secondary"
+            onClick={() => setShowreelOpen(true)}
+          >
             <span className="hero-play-icon" aria-hidden="true">
               <Play size={14} fill="currentColor" strokeWidth={2} />
             </span>
@@ -140,6 +146,11 @@ export default function Hero() {
         </span>
         <span className="hero-scroll-label">Scroll Down</span>
       </button>
+
+      <VideoModal
+        isOpen={showreelOpen}
+        onClose={() => setShowreelOpen(false)}
+      />
     </section>
   );
 }
