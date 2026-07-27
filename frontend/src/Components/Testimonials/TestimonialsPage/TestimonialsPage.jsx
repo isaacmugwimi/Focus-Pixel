@@ -1,6 +1,14 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Star, User, ArrowRight, Quote } from "lucide-react";
+import {
+  Star,
+  User,
+  ArrowRight,
+  Quote,
+  Upload,
+  X,
+  CheckCircle2,
+} from "lucide-react";
 import "./TestimonialsPage.css";
 
 const REVIEWS = [
@@ -101,8 +109,35 @@ const staggerContainer = {
   visible: { transition: { staggerChildren: 0.08 } },
 };
 
+const SERVICE_CHOICES = [
+  "Portrait Photography",
+  "Wedding Photography",
+  "Landscape Photography",
+  "Event Photography",
+  "Product Photography",
+  "Photo Editing & Retouching",
+];
+
+const MAX_IMAGE_MB = 5;
+const ACCEPTED_IMAGE_TYPES = ["image/jpeg", "image/png", "image/webp"];
+
 export default function TestimonialsPage() {
   const [activeCategory, setActiveCategory] = useState("All");
+
+  // ===== Share-a-testimonial form state =====
+  const [reviewForm, setReviewForm] = useState({
+    name: "",
+    email: "",
+    service: "",
+    message: "",
+  });
+  const [rating, setRating] = useState(0);
+  const [hoverRating, setHoverRating] = useState(0);
+  const [photo, setPhoto] = useState(null); // { file, previewUrl }
+  const [errors, setErrors] = useState({});
+  const [reviewSubmitting, setReviewSubmitting] = useState(false);
+  const [reviewSubmitted, setReviewSubmitted] = useState(false);
+  const fileInputRef = useRef(null);
 
   const filtered = useMemo(
     () =>
@@ -129,6 +164,106 @@ export default function TestimonialsPage() {
       pct: Math.round((counts[star] / REVIEWS.length) * 100),
     }));
   }, []);
+
+  const handleReviewChange = (e) => {
+    const { name, value } = e.target;
+    setReviewForm((prev) => ({ ...prev, [name]: value }));
+    // clear that field's error as soon as the person starts fixing it
+    if (errors[name]) {
+      setErrors((prev) => ({ ...prev, [name]: undefined }));
+    }
+  };
+
+  const handleRatingPick = (value) => {
+    setRating(value);
+    if (errors.rating) setErrors((prev) => ({ ...prev, rating: undefined }));
+  };
+
+  const validateImageFile = (file) => {
+    if (!ACCEPTED_IMAGE_TYPES.includes(file.type)) {
+      return "Please upload a JPG, PNG, or WEBP image.";
+    }
+    if (file.size > MAX_IMAGE_MB * 1024 * 1024) {
+      return `Image must be smaller than ${MAX_IMAGE_MB}MB.`;
+    }
+    return null;
+  };
+
+  const handlePhotoChange = (e) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    const error = validateImageFile(file);
+    if (error) {
+      setErrors((prev) => ({ ...prev, photo: error }));
+      e.target.value = ""; // reset the input so re-selecting the same bad file re-triggers onChange
+      return;
+    }
+
+    setErrors((prev) => ({ ...prev, photo: undefined }));
+    setPhoto({ file, previewUrl: URL.createObjectURL(file) });
+  };
+
+  const removePhoto = () => {
+    if (photo?.previewUrl) URL.revokeObjectURL(photo.previewUrl);
+    setPhoto(null);
+    if (fileInputRef.current) fileInputRef.current.value = "";
+  };
+
+  const validateReviewForm = () => {
+    const nextErrors = {};
+
+    if (!reviewForm.name.trim()) {
+      nextErrors.name = "Please enter your name.";
+    } else if (reviewForm.name.trim().length < 2) {
+      nextErrors.name = "Name must be at least 2 characters.";
+    }
+
+    if (!reviewForm.email.trim()) {
+      nextErrors.email = "Please enter your email.";
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(reviewForm.email.trim())) {
+      nextErrors.email = "Please enter a valid email address.";
+    }
+
+    if (!reviewForm.service) {
+      nextErrors.service = "Please select which service this is about.";
+    }
+
+    if (rating === 0) {
+      nextErrors.rating = "Please choose a star rating.";
+    }
+
+    if (!reviewForm.message.trim()) {
+      nextErrors.message = "Please share a few words about your experience.";
+    } else if (reviewForm.message.trim().length < 20) {
+      nextErrors.message = "Please write at least 20 characters.";
+    }
+
+    return nextErrors;
+  };
+
+  const handleReviewSubmit = (e) => {
+    e.preventDefault();
+
+    const nextErrors = validateReviewForm();
+    setErrors(nextErrors);
+    if (Object.keys(nextErrors).length > 0) return;
+
+    setReviewSubmitting(true);
+
+    // Wire this up to your real backend — this just simulates a request.
+    // The photo file lives at `photo.file` if you need to upload it
+    // (e.g. via FormData to your API or a storage bucket).
+    setTimeout(() => {
+      setReviewSubmitting(false);
+      setReviewSubmitted(true);
+      if (photo?.previewUrl) URL.revokeObjectURL(photo.previewUrl);
+      setReviewForm({ name: "", email: "", service: "", message: "" });
+      setRating(0);
+      setPhoto(null);
+      setErrors({});
+    }, 900);
+  };
 
   return (
     <div className="testimonials-page">
@@ -271,6 +406,233 @@ export default function TestimonialsPage() {
         {filtered.length === 0 && (
           <p className="tp-empty">No reviews yet for this category.</p>
         )}
+      </section>
+
+      {/* ===== Share your testimonial ===== */}
+      <section className="tp-share">
+        <div className="tp-share-inner">
+          <motion.div
+            className="tp-share-header"
+            initial={{ opacity: 0, y: 22 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.4 }}
+            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          >
+            <p className="tp-share-eyebrow">Leave a Review</p>
+            <h2 className="tp-share-title">Share Your Experience</h2>
+            <p className="tp-share-subtitle">
+              Worked with us before? We&apos;d love to hear about it — and
+              feature your story here.
+            </p>
+          </motion.div>
+
+          <motion.div
+            className="tp-share-card"
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          >
+            {reviewSubmitted ? (
+              <div className="tp-share-success">
+                <CheckCircle2 size={44} className="tp-share-success-icon" />
+                <h3>Thank You!</h3>
+                <p>
+                  Your testimonial has been submitted and will be reviewed
+                  before it&apos;s published.
+                </p>
+                <button
+                  type="button"
+                  className="tp-share-btn-secondary"
+                  onClick={() => setReviewSubmitted(false)}
+                >
+                  Submit Another
+                </button>
+              </div>
+            ) : (
+              <form
+                className="tp-share-form"
+                onSubmit={handleReviewSubmit}
+                noValidate
+              >
+                <div className="tp-share-row">
+                  <div className="tp-share-field">
+                    <label htmlFor="review-name">Your Name</label>
+                    <input
+                      id="review-name"
+                      name="name"
+                      type="text"
+                      placeholder="Jane Doe"
+                      value={reviewForm.name}
+                      onChange={handleReviewChange}
+                      aria-invalid={!!errors.name}
+                      className={errors.name ? "tp-input-error" : ""}
+                    />
+                    {errors.name && (
+                      <span className="tp-field-error">{errors.name}</span>
+                    )}
+                  </div>
+
+                  <div className="tp-share-field">
+                    <label htmlFor="review-email">Email</label>
+                    <input
+                      id="review-email"
+                      name="email"
+                      type="email"
+                      placeholder="jane@example.com"
+                      value={reviewForm.email}
+                      onChange={handleReviewChange}
+                      aria-invalid={!!errors.email}
+                      className={errors.email ? "tp-input-error" : ""}
+                    />
+                    {errors.email && (
+                      <span className="tp-field-error">{errors.email}</span>
+                    )}
+                    <span className="tp-field-hint">
+                      Never published — only used to verify your review.
+                    </span>
+                  </div>
+                </div>
+
+                <div className="tp-share-field">
+                  <label htmlFor="review-service">Which Service?</label>
+                  <select
+                    id="review-service"
+                    name="service"
+                    value={reviewForm.service}
+                    onChange={handleReviewChange}
+                    aria-invalid={!!errors.service}
+                    className={errors.service ? "tp-input-error" : ""}
+                  >
+                    <option value="">Select a service…</option>
+                    {SERVICE_CHOICES.map((option) => (
+                      <option key={option} value={option}>
+                        {option}
+                      </option>
+                    ))}
+                  </select>
+                  {errors.service && (
+                    <span className="tp-field-error">{errors.service}</span>
+                  )}
+                </div>
+
+                <div className="tp-share-field">
+                  <span className="tp-share-rating-label">Your Rating</span>
+                  <div
+                    className="tp-rating-picker"
+                    role="radiogroup"
+                    aria-label="Star rating"
+                  >
+                    {[1, 2, 3, 4, 5].map((value) => {
+                      const filled = (hoverRating || rating) >= value;
+                      return (
+                        <button
+                          key={value}
+                          type="button"
+                          role="radio"
+                          aria-checked={rating === value}
+                          aria-label={`${value} star${value > 1 ? "s" : ""}`}
+                          className="tp-rating-star-btn"
+                          onMouseEnter={() => setHoverRating(value)}
+                          onMouseLeave={() => setHoverRating(0)}
+                          onClick={() => handleRatingPick(value)}
+                        >
+                          <Star
+                            size={26}
+                            fill={filled ? "currentColor" : "none"}
+                            className={
+                              filled ? "tp-star-filled" : "tp-star-empty"
+                            }
+                          />
+                        </button>
+                      );
+                    })}
+                  </div>
+                  {errors.rating && (
+                    <span className="tp-field-error">{errors.rating}</span>
+                  )}
+                </div>
+
+                <div className="tp-share-field">
+                  <label htmlFor="review-message">Your Testimonial</label>
+                  <textarea
+                    id="review-message"
+                    name="message"
+                    rows={4}
+                    placeholder="Tell us about your experience working with Focus Pixel…"
+                    value={reviewForm.message}
+                    onChange={handleReviewChange}
+                    aria-invalid={!!errors.message}
+                    className={errors.message ? "tp-input-error" : ""}
+                  />
+                  <div className="tp-field-footer">
+                    {errors.message ? (
+                      <span className="tp-field-error">{errors.message}</span>
+                    ) : (
+                      <span className="tp-field-hint">
+                        Minimum 20 characters.
+                      </span>
+                    )}
+                    <span className="tp-char-count">
+                      {reviewForm.message.trim().length}/20
+                    </span>
+                  </div>
+                </div>
+
+                <div className="tp-share-field">
+                  <span className="tp-share-rating-label">
+                    Add a Photo <span className="tp-optional">(optional)</span>
+                  </span>
+
+                  {photo ? (
+                    <div className="tp-photo-preview">
+                      <img src={photo.previewUrl} alt="Upload preview" />
+                      <button
+                        type="button"
+                        className="tp-photo-remove"
+                        onClick={removePhoto}
+                        aria-label="Remove photo"
+                      >
+                        <X size={15} />
+                      </button>
+                    </div>
+                  ) : (
+                    <label
+                      className={
+                        "tp-upload-dropzone" +
+                        (errors.photo ? " tp-upload-dropzone-error" : "")
+                      }
+                    >
+                      <Upload size={20} aria-hidden="true" />
+                      <span>Click to upload a JPG, PNG, or WEBP</span>
+                      <span className="tp-upload-hint">
+                        Max {MAX_IMAGE_MB}MB
+                      </span>
+                      <input
+                        ref={fileInputRef}
+                        type="file"
+                        accept="image/jpeg,image/png,image/webp"
+                        onChange={handlePhotoChange}
+                        hidden
+                      />
+                    </label>
+                  )}
+                  {errors.photo && (
+                    <span className="tp-field-error">{errors.photo}</span>
+                  )}
+                </div>
+
+                <button
+                  type="submit"
+                  className="tp-share-submit"
+                  disabled={reviewSubmitting}
+                >
+                  {reviewSubmitting ? "Submitting…" : "Submit Testimonial"}
+                </button>
+              </form>
+            )}
+          </motion.div>
+        </div>
       </section>
 
       {/* ===== CTA ===== */}

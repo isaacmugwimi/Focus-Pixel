@@ -22,6 +22,7 @@ const NAV_LINKS_AFTER_SERVICES = [
   { label: "Blog", path: "/blog" },
   { label: "Testimonials", path: "/testimonials" },
   { label: "Contact", path: "/contact" },
+  { label: "Faqs", path: "/faqs" },
 ];
 
 export default function Navbar() {
