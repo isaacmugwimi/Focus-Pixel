@@ -13,6 +13,7 @@ import About from "./Components/About/About";
 import Blog from "./Components/Blog/Blog";
 import Faqs from "./Components/Faqs/Faqs";
 import TestimonialsPage from "./Components/Testimonials/TestimonialsPage/TestimonialsPage";
+import Gallery from "./Components/Gallery/Gallery";
 // import ServiceDetail from "./pages/Services/ServiceDetail";
 // import NotFound from "./pages/NotFound/NotFound";
 
@@ -33,7 +34,8 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
           {/* <Route path="/services/:slug" element={<ServiceDetail />} /> */}
-          {/* <Route path="/gallery" element={<Gallery />} /> */}
+          <Route path="/gallery" element={<Gallery />} />
+          <Route path="/gallery/:slug" element={<Gallery />} />
           <Route path="/blog" element={<Blog />} />
           <Route path="/blog/:slug" element={<Blog />} />
           <Route path="/testimonials" element={<TestimonialsPage />} />
@@ -49,3 +51,7 @@ function App() {
 }
 
 export default App;
+
+
+
+

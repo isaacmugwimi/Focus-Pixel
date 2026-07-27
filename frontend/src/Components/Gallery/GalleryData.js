@@ -1,0 +1,147 @@
+// Real images hotlinked from Unsplash (images.unsplash.com CDN — free to use,
+// no attribution required under the Unsplash License). Swap any of these
+// for your own real client photos whenever you have them; just replace the
+// `src` value — no import statements needed since these are external URLs.
+
+const u = (id) =>
+  `https://images.unsplash.com/${id}?auto=format&fit=crop&w=1200&q=80`;
+
+export const GALLERY_ITEMS = [
+  {
+    id: 1,
+    src: u("photo-1544005313-94ddf0286df2"),
+    category: "Portrait",
+    title: "Golden Hour Glow",
+    slug: "golden-hour-glow",
+    size: "tall",
+  },
+  {
+    id: 2,
+    src: u("photo-1532712938310-34cb3982ef74"),
+    category: "Wedding",
+    title: "Hilltop Vows",
+    slug: "hilltop-vows",
+    size: "wide",
+  },
+  {
+    id: 3,
+    src: u("photo-1489493512598-d08130f49bea"),
+    category: "Landscape",
+    title: "Highland Majesty",
+    slug: "highland-majesty",
+    size: "square",
+  },
+  {
+    id: 4,
+    src: u("photo-1536766768598-e09213fdcf22"),
+    category: "Portrait",
+    title: "Quiet Confidence",
+    slug: "quiet-confidence",
+    size: "square",
+  },
+  {
+    id: 5,
+    src: u("photo-1676950933747-5f886cadf014"),
+    category: "Product",
+    title: "Bleu de Nuit",
+    slug: "bleu-de-nuit",
+    size: "tall",
+  },
+  {
+    id: 6,
+    src: u("photo-1723714807813-609218472678"),
+    category: "Event",
+    title: "Live On Stage",
+    slug: "live-on-stage",
+    size: "wide",
+  },
+  {
+    id: 7,
+    src: u("photo-1537633552985-df8429e8048b"),
+    category: "Wedding",
+    title: "Seaside Beginnings",
+    slug: "seaside-beginnings",
+    size: "tall",
+  },
+  {
+    id: 8,
+    src: u("photo-1533577083121-c9bd0b0f32fd"),
+    category: "Landscape",
+    title: "Misty Falls",
+    slug: "misty-falls",
+    size: "square",
+  },
+  {
+    id: 9,
+    src: u("photo-1506863530036-1efeddceb993"),
+    category: "Portrait",
+    title: "Studio Light",
+    slug: "studio-light",
+    size: "wide",
+  },
+  {
+    id: 10,
+    src: u("photo-1635796332668-78830169097d"),
+    category: "Product",
+    title: "Crafted Detail",
+    slug: "crafted-detail",
+    size: "square",
+  },
+  {
+    id: 11,
+    src: u("photo-1604017011826-d3b4c23f8914"),
+    category: "Wedding",
+    title: "The Golden Kiss",
+    slug: "the-golden-kiss",
+    size: "square",
+  },
+  {
+    id: 12,
+    src: u("photo-1683612491338-ab87b7ac6583"),
+    category: "Event",
+    title: "Crowd Energy",
+    slug: "crowd-energy",
+    size: "tall",
+  },
+  {
+    id: 13,
+    src: u("photo-1544954617-f5c6b0d16164"),
+    category: "Landscape",
+    title: "Coastal Horizon",
+    slug: "coastal-horizon",
+    size: "wide",
+  },
+  {
+    id: 14,
+    src: u("photo-1606122017369-d782bbb78f32"),
+    category: "Portrait",
+    title: "Natural Elegance",
+    slug: "natural-elegance",
+    size: "tall",
+  },
+  {
+    id: 15,
+    src: u("photo-1626953313883-9d031d98307e"),
+    category: "Product",
+    title: "Still Life",
+    slug: "still-life",
+    size: "square",
+  },
+  {
+    id: 16,
+    src: u("photo-1684576069958-22c2adb77d65"),
+    category: "Event",
+    title: "After Dark",
+    slug: "after-dark",
+    size: "square",
+  },
+];
+
+export const GALLERY_CATEGORIES = [
+  "All",
+  "Portrait",
+  "Wedding",
+  "Landscape",
+  "Event",
+  "Product",
+];
