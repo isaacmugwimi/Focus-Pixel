@@ -1,73 +1,14 @@
-import { useState, useMemo } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { Calendar, Clock, ArrowRight, Mail } from "lucide-react";
-import "./Blog.css";
-
 // Swap these for real cover images — see src/assets/blog/
-import post1 from "../../assets/blog/heroImage1.png";
-import post2 from "../../assets/blog/heroImage1.png";
-import post3 from "../../assets/blog/heroImage1.png";
-import post4 from "../../assets/blog/heroImage1.png";
-import post5 from "../../assets/blog/heroImage1.png";
 
-const POSTS = [
-  {
-    id: 1,
-    slug: "5-tips-for-natural-wedding-photos",
-    title: "5 Tips for More Natural Wedding Photos",
-    excerpt:
-      "Forget stiff, posed shots. Here's how we get couples to relax in front of the camera so the real moments come through.",
-    category: "Wedding",
-    date: "July 2, 2026",
-    readTime: "5 min read",
-    image: post1,
-    featured: true,
-  },
-  {
-    id: 2,
-    slug: "choosing-the-right-location-for-portraits",
-    title: "Choosing the Right Location for Your Portrait Session",
-    excerpt:
-      "Golden hour on a rooftop or soft studio light? We break down how to pick a location that matches your personality.",
-    category: "Portrait",
-    date: "June 18, 2026",
-    readTime: "4 min read",
-    image: post2,
-  },
-  {
-    id: 3,
-    slug: "behind-the-scenes-corporate-shoot",
-    title: "Behind the Scenes: A Full-Day Corporate Shoot",
-    excerpt:
-      "A look at how we plan, light, and execute a full-day brand shoot for a growing Nairobi startup.",
-    category: "Product",
-    date: "June 5, 2026",
-    readTime: "6 min read",
-    image: post3,
-  },
-  {
-    id: 4,
-    slug: "why-golden-hour-matters",
-    title: "Why Golden Hour Matters (And When to Shoot It)",
-    excerpt:
-      "The one hour of the day every photographer chases — and exactly how to plan your shoot around it.",
-    category: "Landscape",
-    date: "May 22, 2026",
-    readTime: "3 min read",
-    image: post4,
-  },
-  {
-    id: 5,
-    slug: "how-we-edit-a-wedding-gallery",
-    title: "How We Edit an Entire Wedding Gallery",
-    excerpt:
-      "From culling 3,000 shots down to 500 to final color grading — our full retouching workflow explained.",
-    category: "Editing",
-    date: "May 9, 2026",
-    readTime: "7 min read",
-    image: post5,
-  },
-];
+import { useState, useMemo } from "react";
+import { useParams, useNavigate, Link } from "react-router-dom";
+import { motion, AnimatePresence } from "framer-motion";
+import { Helmet } from "react-helmet-async";
+import { Calendar, Clock, ArrowRight, Mail } from "lucide-react";
+import { POSTS } from "./BlogData";
+// import BlogPostModal from "./BlogPostModal";
+import "./Blog.css";
+import BlogPostModal from "./BlogPostModal/BlogPostModal";
 
 const CATEGORIES = [
   "All",
@@ -94,6 +35,16 @@ const staggerContainer = {
 
 export default function Blog() {
   const [activeCategory, setActiveCategory] = useState("All");
+  const { slug } = useParams();
+  const navigate = useNavigate();
+
+  const activePost = slug ? POSTS.find((p) => p.slug === slug) : null;
+
+  // if someone lands on /blog/some-slug-that-doesnt-exist, bounce back
+  // to the listing instead of showing a blank modal
+  if (slug && !activePost) {
+    navigate("/blog", { replace: true });
+  }
 
   const featured = POSTS.find((p) => p.featured);
 
@@ -106,6 +57,17 @@ export default function Blog() {
 
   return (
     <div className="blog-page">
+      {/* Default listing-page SEO — overridden by BlogPostModal's own
+          Helmet when a post is open, since Helmet merges by rendering
+          order (the later one, i.e. the modal, wins for duplicate tags) */}
+      <Helmet>
+        <title>Blog | Focus Pixel Photography</title>
+        <meta
+          name="description"
+          content="Photography tips, behind-the-scenes stories, and studio updates from the Focus Pixel team."
+        />
+      </Helmet>
+
       {/* ===== Banner ===== */}
       <section className="blog-banner">
         <div className="blog-banner-overlay" aria-hidden="true" />
@@ -116,7 +78,7 @@ export default function Blog() {
           transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
         >
           <nav className="blog-breadcrumb" aria-label="Breadcrumb">
-            <a href="/">Home</a>
+            <Link to="/">Home</Link>
             <span aria-hidden="true">/</span>
             <span>Blog</span>
           </nav>
@@ -133,36 +95,36 @@ export default function Blog() {
       {/* ===== Featured post ===== */}
       {featured && (
         <section className="blog-featured">
-          <motion.a
-            href={`/blog/${featured.slug}`}
-            className="blog-featured-card"
+          <motion.div
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.3 }}
             transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
           >
-            <div
-              className="blog-featured-image"
-              style={{ backgroundImage: `url(${featured.image})` }}
-            />
-            <div className="blog-featured-body">
-              <span className="blog-featured-badge">Featured</span>
-              <span className="blog-card-category">{featured.category}</span>
-              <h2 className="blog-featured-title">{featured.title}</h2>
-              <p className="blog-featured-excerpt">{featured.excerpt}</p>
-              <div className="blog-card-meta">
-                <span>
-                  <Calendar size={14} aria-hidden="true" /> {featured.date}
-                </span>
-                <span>
-                  <Clock size={14} aria-hidden="true" /> {featured.readTime}
+            <Link to={`/blog/${featured.slug}`} className="blog-featured-card">
+              <div
+                className="blog-featured-image"
+                style={{ backgroundImage: `url(${featured.image})` }}
+              />
+              <div className="blog-featured-body">
+                <span className="blog-featured-badge">Featured</span>
+                <span className="blog-card-category">{featured.category}</span>
+                <h2 className="blog-featured-title">{featured.title}</h2>
+                <p className="blog-featured-excerpt">{featured.excerpt}</p>
+                <div className="blog-card-meta">
+                  <span>
+                    <Calendar size={14} aria-hidden="true" /> {featured.date}
+                  </span>
+                  <span>
+                    <Clock size={14} aria-hidden="true" /> {featured.readTime}
+                  </span>
+                </div>
+                <span className="blog-featured-link">
+                  Read Article <ArrowRight size={16} aria-hidden="true" />
                 </span>
               </div>
-              <span className="blog-featured-link">
-                Read Article <ArrowRight size={16} aria-hidden="true" />
-              </span>
-            </div>
-          </motion.a>
+            </Link>
+          </motion.div>
         </section>
       )}
 
@@ -197,30 +159,27 @@ export default function Blog() {
             variants={staggerContainer}
           >
             {filtered.map((post) => (
-              <motion.a
-                key={post.id}
-                href={`/blog/${post.slug}`}
-                className="blog-card"
-                variants={fadeUp}
-              >
-                <div
-                  className="blog-card-image"
-                  style={{ backgroundImage: `url(${post.image})` }}
-                />
-                <div className="blog-card-body">
-                  <span className="blog-card-category">{post.category}</span>
-                  <h3 className="blog-card-title">{post.title}</h3>
-                  <p className="blog-card-excerpt">{post.excerpt}</p>
-                  <div className="blog-card-meta">
-                    <span>
-                      <Calendar size={13} aria-hidden="true" /> {post.date}
-                    </span>
-                    <span>
-                      <Clock size={13} aria-hidden="true" /> {post.readTime}
-                    </span>
+              <motion.div key={post.id} variants={fadeUp}>
+                <Link to={`/blog/${post.slug}`} className="blog-card">
+                  <div
+                    className="blog-card-image"
+                    style={{ backgroundImage: `url(${post.image})` }}
+                  />
+                  <div className="blog-card-body">
+                    <span className="blog-card-category">{post.category}</span>
+                    <h3 className="blog-card-title">{post.title}</h3>
+                    <p className="blog-card-excerpt">{post.excerpt}</p>
+                    <div className="blog-card-meta">
+                      <span>
+                        <Calendar size={13} aria-hidden="true" /> {post.date}
+                      </span>
+                      <span>
+                        <Clock size={13} aria-hidden="true" /> {post.readTime}
+                      </span>
+                    </div>
                   </div>
-                </div>
-              </motion.a>
+                </Link>
+              </motion.div>
             ))}
           </motion.div>
         </AnimatePresence>
@@ -253,6 +212,13 @@ export default function Blog() {
           </form>
         </motion.div>
       </section>
+
+      {/* ===== Post modal, rendered on top when /blog/:slug matches ===== */}
+      <AnimatePresence>
+        {activePost && (
+          <BlogPostModal post={activePost} key={activePost.slug} />
+        )}
+      </AnimatePresence>
     </div>
   );
 }

@@ -1,0 +1,116 @@
+// Swap these for real cover images — see src/assets/blog/
+import post1 from "../../assets/blog/heroImage1.png";
+import post2 from "../../assets/blog/heroImage1.png";
+import post3 from "../../assets/blog/heroImage1.png";
+import post4 from "../../assets/blog/heroImage1.png";
+import post5 from "../../assets/blog/heroImage1.png";
+
+export const POSTS = [
+  {
+    id: 1,
+    slug: "5-tips-for-natural-wedding-photos",
+    title: "5 Tips for More Natural Wedding Photos",
+    excerpt:
+      "Forget stiff, posed shots. Here's how we get couples to relax in front of the camera so the real moments come through.",
+    metaDescription:
+      "Five practical tips Focus Pixel uses to capture natural, candid wedding photography instead of stiff, posed shots.",
+    category: "Wedding",
+    author: "Isaac Mugwimi",
+    date: "July 2, 2026",
+    readTime: "5 min read",
+    image: post1,
+    featured: true,
+    content: [
+      "Posed wedding photos have their place, but the shots couples remember most are almost always the candid ones — the laugh nobody expected, the quiet look between vows, the flower girl mid-sprint. Here's how we consistently get those moments.",
+      "1. Start with a real conversation, not instructions. Before we raise the camera, we spend the first ten minutes just talking — about the venue, the guest list, anything but the shoot itself. It relaxes people faster than any pose direction ever could.",
+      '2. Give people something to do, not something to hold still for. "Walk toward the light and talk about your first date" produces a far more natural photo than "stand here and smile."',
+      "3. Shoot through the in-between moments. Some of our favorite frames happen while people are getting into position for the 'real' shot — the giggle, the adjusting of a tie, the deep breath before walking down the aisle.",
+      "4. Use a longer lens and step back. Being physically closer to your subject makes people self-conscious. A little distance, paired with a longer focal length, lets people forget the camera is even there.",
+      "5. Don't chase every smile. Some of the most striking wedding photos are quiet, even serious. Let real emotion happen instead of prompting for a grin in every frame.",
+    ],
+  },
+  {
+    id: 2,
+    slug: "choosing-the-right-location-for-portraits",
+    title: "Choosing the Right Location for Your Portrait Session",
+    excerpt:
+      "Golden hour on a rooftop or soft studio light? We break down how to pick a location that matches your personality.",
+    metaDescription:
+      "A practical guide to choosing between studio, outdoor, and golden-hour locations for your next portrait session.",
+    category: "Portrait",
+    author: "Wanjiru Kamau",
+    date: "June 18, 2026",
+    readTime: "4 min read",
+    image: post2,
+    content: [
+      "The right location does half the storytelling before we even raise the camera. Here's how we help clients choose.",
+      "Studio sessions are best when you want full control — consistent lighting, a clean background, and zero weather risk. They're also the most flexible for wardrobe changes within a single session.",
+      "Outdoor golden hour sessions bring warmth and softness that's hard to replicate artificially, but they're time-boxed to about 45 minutes around sunrise or sunset, so scheduling matters.",
+      "Urban or architectural locations suit portraits with a bolder, more editorial feel — think leading lines, textured walls, and interesting shadows.",
+      "Whatever you choose, the best location is the one that reflects how you actually want to be remembered — not just what looks good in a preview thumbnail.",
+    ],
+  },
+  {
+    id: 3,
+    slug: "behind-the-scenes-corporate-shoot",
+    title: "Behind the Scenes: A Full-Day Corporate Shoot",
+    excerpt:
+      "A look at how we plan, light, and execute a full-day brand shoot for a growing Nairobi startup.",
+    metaDescription:
+      "An inside look at how Focus Pixel plans and executes a full-day corporate branding photo shoot, from lighting to logistics.",
+    category: "Product",
+    author: "Brian Otieno",
+    date: "June 5, 2026",
+    readTime: "6 min read",
+    image: post3,
+    content: [
+      "Corporate shoots live or die on planning. A recent full-day shoot for a growing Nairobi startup is a good example of how we structure the day.",
+      "We start with a shot list built directly from the client's marketing calendar — headshots for LinkedIn, candid office photos for the careers page, and detailed product shots for the website.",
+      "Lighting travels with us: two softboxes, a reflector, and a portable backdrop, so we can move between the office floor, meeting rooms, and an outdoor break area without losing consistency.",
+      "The biggest lesson from these shoots: build in more transition time than feels necessary. Every setup change takes longer in a working office than in a controlled studio.",
+      "By the end of the day we'd delivered over 40 final images across headshots, lifestyle, and product categories — all color-matched so the brand feels cohesive across every platform.",
+    ],
+  },
+  {
+    id: 4,
+    slug: "why-golden-hour-matters",
+    title: "Why Golden Hour Matters (And When to Shoot It)",
+    excerpt:
+      "The one hour of the day every photographer chases — and exactly how to plan your shoot around it.",
+    metaDescription:
+      "What golden hour is, why photographers chase it, and how to time your shoot around it for the best natural light.",
+    category: "Landscape",
+    author: "Isaac Mugwimi",
+    date: "May 22, 2026",
+    readTime: "3 min read",
+    image: post4,
+    content: [
+      "Golden hour is the short window after sunrise and before sunset when sunlight travels through more atmosphere, scattering blue light and leaving behind a warm, soft glow.",
+      "For landscapes specifically, that low sun angle creates long shadows and texture that a midday sun simply can't produce — flat overhead light tends to wash out depth entirely.",
+      "In Kenya, golden hour typically lasts 30–45 minutes, so we plan arrival at least an hour before to scout composition and settle equipment before the light actually turns.",
+      "If you're planning your own shoot, apps like PhotoPills or even a basic weather app's sunset time are enough to plan around — just build in buffer time, because the best light disappears fast.",
+    ],
+  },
+  {
+    id: 5,
+    slug: "how-we-edit-a-wedding-gallery",
+    title: "How We Edit an Entire Wedding Gallery",
+    excerpt:
+      "From culling 3,000 shots down to 500 to final color grading — our full retouching workflow explained.",
+    metaDescription:
+      "Focus Pixel's full wedding photo editing workflow, from culling thousands of shots down to a polished final gallery.",
+    category: "Editing",
+    author: "Brian Otieno",
+    date: "May 9, 2026",
+    readTime: "7 min read",
+    image: post5,
+    content: [
+      "A typical wedding produces 2,500–3,500 raw images. Getting that down to a polished 400–500 image gallery is most of the actual work.",
+      "Step one is culling — a first fast pass to eliminate blinks, blur, and duplicates, usually cutting the set by more than half within a couple of hours.",
+      "Step two is selects — choosing the strongest version of every moment, guided by the shot list and any specific requests from the couple.",
+      "Step three is color grading. We build a consistent look across the whole gallery first, then fine-tune skin tones and exposure image by image.",
+      "The final pass is detail retouching — only where it matters. We keep skin looking like skin, not plastic, and focus corrections on genuinely distracting elements rather than over-processing every frame.",
+      "Start to finish, a full wedding gallery takes our team 15–20 hours of dedicated editing time, spread across the 2–3 week delivery window.",
+    ],
+  },
+];

@@ -35,6 +35,7 @@ function App() {
           {/* <Route path="/services/:slug" element={<ServiceDetail />} /> */}
           {/* <Route path="/gallery" element={<Gallery />} /> */}
           <Route path="/blog" element={<Blog />} />
+          <Route path="/blog/:slug" element={<Blog />} />
           <Route path="/testimonials" element={<TestimonialsPage />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/faqs" element={<Faqs />} />
