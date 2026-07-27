@@ -8,6 +8,6 @@
    Home (where the Hero intentionally sits behind the navbar).
    Keep this in sync with the navbar's real height. */
 .page-offset {
-  padding-top: 84px;
-  /* padding: 84px 50px 0 50px; */
+  padding-top: 75px;
+  /* padding: 84px 50px 0 50px;  */
 }

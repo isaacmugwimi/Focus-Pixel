@@ -10,6 +10,9 @@ import Footer from "./Components/Footer/Footer";
 // import Testimonials from "./pages/Testimonials/Testimonials";
 import Contact from "./Components/Contact/Contact";
 import About from "./Components/About/About";
+import Blog from "./Components/Blog/Blog";
+import Faqs from "./Components/Faqs/Faqs";
+import TestimonialsPage from "./Components/Testimonials/TestimonialsPage/TestimonialsPage";
 // import ServiceDetail from "./pages/Services/ServiceDetail";
 // import NotFound from "./pages/NotFound/NotFound";
 
@@ -31,9 +34,10 @@ function App() {
           <Route path="/about" element={<About />} />
           {/* <Route path="/services/:slug" element={<ServiceDetail />} /> */}
           {/* <Route path="/gallery" element={<Gallery />} /> */}
-          {/* <Route path="/blog" element={<Blog />} /> */}
-          {/* <Route path="/testimonials" element={<Testimonials />} /> */}
+          <Route path="/blog" element={<Blog />} />
+          <Route path="/testimonials" element={<TestimonialsPage />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/faqs" element={<Faqs />} />
           {/* <Route path="*" element={<NotFound />} /> */}
         </Routes>
       </main>
