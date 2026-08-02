@@ -25,17 +25,33 @@ export const SERVICES_DATA = {
       {
         name: "Essential",
         price: "From KSh 8,000",
-        includes: ["45-min session", "1 location", "10 edited images", "Online gallery"],
+        includes: [
+          "45-min session",
+          "1 location",
+          "10 edited images",
+          "Online gallery",
+        ],
       },
       {
         name: "Signature",
         price: "From KSh 15,000",
-        includes: ["90-min session", "2 locations", "25 edited images", "Outfit changes", "Print release"],
+        includes: [
+          "90-min session",
+          "2 locations",
+          "25 edited images",
+          "Outfit changes",
+          "Print release",
+        ],
       },
       {
         name: "Full Story",
         price: "From KSh 25,000",
-        includes: ["Half-day session", "Multiple locations", "50+ edited images", "Behind-the-scenes reel"],
+        includes: [
+          "Half-day session",
+          "Multiple locations",
+          "50+ edited images",
+          "Behind-the-scenes reel",
+        ],
       },
     ],
     faqs: [
@@ -69,17 +85,33 @@ export const SERVICES_DATA = {
       {
         name: "Intimate",
         price: "From KSh 45,000",
-        includes: ["6 hours coverage", "1 photographer", "300+ edited images", "Online gallery"],
+        includes: [
+          "6 hours coverage",
+          "1 photographer",
+          "300+ edited images",
+          "Online gallery",
+        ],
       },
       {
         name: "Classic",
         price: "From KSh 80,000",
-        includes: ["10 hours coverage", "2 photographers", "600+ edited images", "Engagement session", "USB + gallery"],
+        includes: [
+          "10 hours coverage",
+          "2 photographers",
+          "600+ edited images",
+          "Engagement session",
+          "USB + gallery",
+        ],
       },
       {
         name: "Grand",
         price: "From KSh 120,000",
-        includes: ["Multi-day coverage", "2 photographers + assistant", "1000+ edited images", "Same-day highlight reel"],
+        includes: [
+          "Multi-day coverage",
+          "2 photographers + assistant",
+          "1000+ edited images",
+          "Same-day highlight reel",
+        ],
       },
     ],
     faqs: [
@@ -113,17 +145,29 @@ export const SERVICES_DATA = {
       {
         name: "Print License",
         price: "From KSh 3,000",
-        includes: ["Single image", "Personal use license", "High-res digital file"],
+        includes: [
+          "Single image",
+          "Personal use license",
+          "High-res digital file",
+        ],
       },
       {
         name: "Commercial License",
         price: "From KSh 12,000",
-        includes: ["Single image", "Commercial use license", "Print + digital rights"],
+        includes: [
+          "Single image",
+          "Commercial use license",
+          "Print + digital rights",
+        ],
       },
       {
         name: "Custom Shoot",
         price: "Quote on request",
-        includes: ["On-location shoot", "Full edited set", "Usage rights negotiated"],
+        includes: [
+          "On-location shoot",
+          "Full edited set",
+          "Usage rights negotiated",
+        ],
       },
     ],
     faqs: [
@@ -138,7 +182,8 @@ export const SERVICES_DATA = {
     slug: "event",
     title: "Event Photography",
     shortTitle: "Event",
-    tagline: "Corporate, social, or community — covered without getting in the way.",
+    tagline:
+      "Corporate, social, or community — covered without getting in the way.",
     description:
       "Conferences, launches, parties, and community events, shot to capture atmosphere, key moments, and the people who made it happen.",
     heroImage: "/images/services/event-hero.jpg",
@@ -158,7 +203,12 @@ export const SERVICES_DATA = {
       {
         name: "Full Day",
         price: "From KSh 35,000",
-        includes: ["8 hours coverage", "1–2 photographers", "300+ edited images", "Same-day highlights"],
+        includes: [
+          "8 hours coverage",
+          "1–2 photographers",
+          "300+ edited images",
+          "Same-day highlights",
+        ],
       },
     ],
     faqs: [
@@ -198,7 +248,11 @@ export const SERVICES_DATA = {
       {
         name: "Lifestyle",
         price: "From KSh 1,200/item",
-        includes: ["Styled lifestyle set", "Full retouching", "Social-ready crops"],
+        includes: [
+          "Styled lifestyle set",
+          "Full retouching",
+          "Social-ready crops",
+        ],
       },
     ],
     faqs: [
@@ -228,12 +282,21 @@ export const SERVICES_DATA = {
       {
         name: "Highlight",
         price: "From KSh 25,000",
-        includes: ["3–5 min highlight film", "1 camera operator", "Licensed music"],
+        includes: [
+          "3–5 min highlight film",
+          "1 camera operator",
+          "Licensed music",
+        ],
       },
       {
         name: "Documentary",
         price: "From KSh 60,000",
-        includes: ["Full-length edit", "2 camera operators", "Drone footage", "Social cutdowns"],
+        includes: [
+          "Full-length edit",
+          "2 camera operators",
+          "Drone footage",
+          "Social cutdowns",
+        ],
       },
     ],
     faqs: [
@@ -268,12 +331,20 @@ export const SERVICES_DATA = {
       {
         name: "Full Retouch",
         price: "From KSh 300/image",
-        includes: ["Advanced retouching", "Background cleanup", "Custom color grade"],
+        includes: [
+          "Advanced retouching",
+          "Background cleanup",
+          "Custom color grade",
+        ],
       },
       {
         name: "Batch (50+)",
         price: "Quote on request",
-        includes: ["Consistent batch editing", "Priority turnaround", "Revision round included"],
+        includes: [
+          "Consistent batch editing",
+          "Priority turnaround",
+          "Revision round included",
+        ],
       },
     ],
     faqs: [
