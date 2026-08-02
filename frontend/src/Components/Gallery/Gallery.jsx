@@ -1,4 +1,4 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { Helmet } from "react-helmet-async";
@@ -25,6 +25,14 @@ export default function Gallery() {
   const [activeCategory, setActiveCategory] = useState("All");
   const { slug } = useParams();
   const navigate = useNavigate();
+  useEffect(() => {
+    if (!slug) return;
+    const original = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = original;
+    };
+  }, [Boolean(slug)]);
 
   const activeItem = slug ? GALLERY_ITEMS.find((i) => i.slug === slug) : null;
 
@@ -37,7 +45,7 @@ export default function Gallery() {
       activeCategory === "All"
         ? GALLERY_ITEMS
         : GALLERY_ITEMS.filter((i) => i.category === activeCategory),
-    [activeCategory]
+    [activeCategory],
   );
 
   return (
@@ -108,7 +116,10 @@ export default function Gallery() {
                 className={`gallery-item gallery-item-${item.size}`}
                 variants={fadeUp}
               >
-                <Link to={`/gallery/${item.slug}`} className="gallery-item-link">
+                <Link
+                  to={`/gallery/${item.slug}`}
+                  className="gallery-item-link"
+                >
                   <img
                     src={item.src}
                     alt={`${item.title} — ${item.category} photography`}
@@ -119,7 +130,9 @@ export default function Gallery() {
                     <Expand size={16} />
                   </span>
                   <div className="gallery-item-caption">
-                    <span className="gallery-item-category">{item.category}</span>
+                    <span className="gallery-item-category">
+                      {item.category}
+                    </span>
                     <span className="gallery-item-title">{item.title}</span>
                   </div>
                 </Link>
@@ -135,7 +148,9 @@ export default function Gallery() {
 
       {/* ===== Lightbox ===== */}
       <AnimatePresence>
-        {activeItem && <GalleryLightbox item={activeItem} key={activeItem.slug} />}
+        {activeItem && (
+          <GalleryLightbox item={activeItem} key={activeItem.slug} />
+        )}
       </AnimatePresence>
     </div>
   );

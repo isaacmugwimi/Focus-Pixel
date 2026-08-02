@@ -25,8 +25,6 @@ export default function GalleryLightbox({ item }) {
 
   // lock scroll, trap focus, escape + arrow-key navigation
   useEffect(() => {
-    const original = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
     previouslyFocused.current = document.activeElement;
     modalRef.current?.focus();
 
@@ -53,7 +51,6 @@ export default function GalleryLightbox({ item }) {
 
     document.addEventListener("keydown", handleKeyDown);
     return () => {
-      document.body.style.overflow = original;
       document.removeEventListener("keydown", handleKeyDown);
       previouslyFocused.current?.focus?.();
     };
