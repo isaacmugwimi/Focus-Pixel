@@ -3,8 +3,7 @@ import { useEffect, useRef, useState, useCallback } from "react";
 import { X, Loader2, ArrowRight } from "lucide-react";
 import "./VideoModal.css";
 
-// Swap for your real showreel file — see src/assets/
-const SHOWREEL_SRC = "/videos/focus-pixel-showreel.mp4";
+const SHOWREEL_SRC = "../../../../assets/Videos/videoReeel.mp4";
 
 const CATEGORIES = [
   "Wedding",
