@@ -1,9 +1,7 @@
-
 import { useEffect, useRef, useState, useCallback } from "react";
 import { X, Loader2, ArrowRight } from "lucide-react";
+import SHOWREEL_SRC from "../../../../assets/Videos/videoReeel.mp4";
 import "./VideoModal.css";
-
-const SHOWREEL_SRC = "../../../../assets/Videos/videoReeel.mp4";
 
 const CATEGORIES = [
   "Wedding",
@@ -79,7 +77,7 @@ export default function VideoModal({ isOpen, onClose }) {
       if (e.key !== "Tab" || !modalRef.current) return;
 
       const focusable = modalRef.current.querySelectorAll(
-        'button, [href], video, [tabindex]:not([tabindex="-1"])'
+        'button, [href], video, [tabindex]:not([tabindex="-1"])',
       );
       if (focusable.length === 0) return;
 
@@ -131,7 +129,11 @@ export default function VideoModal({ isOpen, onClose }) {
         {showIntro ? (
           <div className="video-modal-intro">
             <span className="video-modal-intro-mark" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
                 <path
                   d="M12 2 L15 9 L22 12 L15 15 L12 22 L9 15 L2 12 L9 9 Z"
                   fill="currentColor"
@@ -164,7 +166,8 @@ export default function VideoModal({ isOpen, onClose }) {
                 playsInline
                 onCanPlay={() => setVideoReady(true)}
                 className={
-                  "video-modal-video" + (videoReady ? " video-modal-video-ready" : "")
+                  "video-modal-video" +
+                  (videoReady ? " video-modal-video-ready" : "")
                 }
               />
             </div>
