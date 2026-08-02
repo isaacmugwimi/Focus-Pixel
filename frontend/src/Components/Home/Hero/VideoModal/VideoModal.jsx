@@ -24,13 +24,9 @@ export default function VideoModal({ isOpen, onClose }) {
 
   // reset intro/loading state each time the modal opens fresh
   useEffect(() => {
-    if (isOpen) {
-      setShowIntro(true);
-      setVideoReady(false);
-      const timer = setTimeout(() => setShowIntro(false), INTRO_DURATION_MS);
-      return () => clearTimeout(timer);
-    }
-  }, [isOpen]);
+    const timer = setTimeout(() => setShowIntro(false), INTRO_DURATION_MS);
+    return () => clearTimeout(timer);
+  }, []);
 
   // lock page scroll while open
   useEffect(() => {
